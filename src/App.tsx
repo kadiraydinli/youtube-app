@@ -1,13 +1,25 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar, Sidebar } from "./components";
+import { PageContainer } from "./containers";
+import { Detail, Home, Search } from "./pages";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+      <BrowserRouter>
+        <Navbar />
+        <PageContainer>
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="videos/:id" element={<Detail />} />
+            <Route path="search/:keyword" element={<Search />} />
+          </Routes>
+        </PageContainer>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
